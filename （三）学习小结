@@ -1,0 +1,53 @@
+#### (三)学习小结
+说明：\
+对现阶段学习总结，现阶段可以完成简单demo，自动操作包含有：\
+1.打开页面
+
+第一种方式：
+
+    driver.get('http://xxxx.com')(注意：网址一定要加http/https)
+
+第二种方式：
+
+    first_count = 'http://xxx.com'
+    driver.get('first_count')
+
+2.页面跳转
+
+first_count = 'http://xxx.com'\
+driver.get('first_count')\
+two_count = 'http://xxx.com'\
+driver.get('two_count')
+
+3.页面回退
+
+    driver.back()
+
+4.页面前进
+
+    driver.foeward()
+
+5.页面刷新
+
+    driver.refresh()
+
+6.页面退出
+
+    driver.quit()
+
+### 特别注意
+说明：\
+脚本前几行是一定要记住，代码如下：
+
+    #coding=utf-8   #编码转换
+    
+    frome selenium import webdriver #webdriver包的引用
+    
+    import time #time方法调用
+    
+    driver = webdriver.Firefox  #打开浏览器
+    
+    driver.maximize_window  #窗口最大化
+    
+    
+    
