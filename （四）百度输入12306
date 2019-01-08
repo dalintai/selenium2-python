@@ -1,0 +1,13 @@
+#coding=utf-8
+from selenium import webdrive
+import time
+driver=webdriver.Firefox
+driver.maximize_window
+baidu = "https://www.baidu.com"
+driver.get(baidu)
+driver.find_element_by_id("kw").clear()
+driver.find_element_by_id("kw").send_keys("12306")
+driver.find_element_by_id("su").click()
+time.sleep(3)
+driver.quit()
+
