@@ -10,14 +10,14 @@
 第二种方式：
 
     first_count = 'http://xxx.com'
-    driver.get('first_count')
+    driver.get(first_count)
 
 2.页面跳转
 
 first_count = 'http://xxx.com'\
-driver.get('first_count')\
+driver.get(first_count)\
 two_count = 'http://xxx.com'\
-driver.get('two_count')
+driver.get(two_count)
 
 3.页面回退
 
