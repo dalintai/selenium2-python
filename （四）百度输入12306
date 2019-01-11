@@ -1,3 +1,34 @@
+#coding = utf-8
+from seleium import webdriver
+import time
+
+driver = webdriver.Firefox()
+driver.maximize_window
+
+baidu = ("https://www.baidu.com")
+driver.get(baidu)
+time.sleep(2)
+driver.find_element_by_id("kw").clear()
+driver.find_element_by_id("kw").send_keys("text")
+driver.find_element_by_id("su").click()
+time.sleep(2)
+
+size = driver.fing_element_by_id("kw").size
+print(size)
+text = driver.find_element_by_by_id("kw").text
+print(text)
+attribute = driver.find_element_by_id("kw").get_attribute("type")
+print(attribute)
+result = driver.find_element_by_id("kw").is_displayed()
+print(result)
+
+time.sleep(2)
+driver.quit()
+
+--------------
+以下是旧代码，上面是1月12日优化后的更新
+--------------
+
 #coding=utf-8
 from selenium import webdrive
 import time
