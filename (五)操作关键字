@@ -1,0 +1,81 @@
+#打开浏览器
+from selenium import webdriver
+driver = webdriver.Firefox()
+driver.maximize_window
+
+#打开网址
+wangzhi = ("http://www.baidu.com")
+driver.get(wangzhi)
+
+#定位元素
+driver.find_element_by_id("kw")
+
+#点击操作
+driver.find_element_by_id("kw").click()
+
+#浏览器回退/前进/刷新操作
+driver.back()
+driver.forward()
+driver.refresh()
+
+#清除选中元素内容
+driver.find_element_by_id("kw").clear()
+http://fanyi.youdao.com/
+#保持2s时间
+tme.sleep(2)
+
+#查看元素尺寸
+size = driver.find_element_by_id("kw").size
+print (size)
+
+#返回元素信息
+text = driver.find_element_by_id("kw").text
+print (text)
+
+#返回元素属性
+attribute = driver.find_element_by_id("kw").get_attribute("type")
+print (attribute)
+
+#返回元素是否可见
+result = driver.find_element_by_id("kw").is_displayed()
+print (result)
+
+#鼠标事件
+#需要引入ActionChains类
+from selenium.webdriver.common.action_chains import ActionChains
+#定位到元素
+right = driver.find_element_by_id("xx")
+#对元素进行右键操作
+ActionChains(driver).context_click(right).perform()
+
+#定位到悬停元素
+above = driver.find_element_by_id("id")
+#对定位元素执行悬停操作
+ActionChains(driver).move_to_element(above).perform()
+
+#鼠标释放操作
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
