@@ -1,0 +1,12 @@
+from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+import time
+driver = webdriver.Firefox()
+driver.maximize_window
+
+baidu = ("https://www.baidu.com")
+driver.get(baidu)
+
+driver.find_element_by_id("kw").send_keys("abc")
+driver.find_element_by_id("kw").send_keys(Keys.BACK_SPACE)
