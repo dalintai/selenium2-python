@@ -31,4 +31,24 @@ ignored_exceptions：超时后抛出的异常信息，默认抛出是NoSuchEleme
     
 说明：单位为秒
 
-##### 
+------
+
+#coding = utf-8
+from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
+
+import time
+
+driver = webdriver.Firefox()
+biadu = ("https://www.baidu.com")
+driver.get(biadu)
+time.sleep(1)
+driver.get("https://www.jianshu.com/")
+driver.back()
+driver.forward()
+driver.refresh()
+driver.get(baidu)
+
+driver.find_element_by_id("kw22").send_keys("slenium")
+
+
