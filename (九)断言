@@ -44,7 +44,7 @@ driver.find_element_by_id("kw").send_keys("selenium")
 driver.find_element_by_id("su").click()
 sleep(1)
 
-
+#不能对以下元素组直接获取text是因为没有text的类型
 texts = driver.find_element_by_xpath('//*[@id="content_left"]')
 
 for t in texts:
