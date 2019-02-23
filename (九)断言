@@ -25,3 +25,29 @@ print(tit)
 
 url2 = driver.current_url
 print(url2)
+
+
+-------------------------------------------------------
+
+#对断言代码进行重新优化，添加循环
+
+# coding = utf-8
+from selenium import webdriver
+from time import sleep
+driver = webdriver.Firefox()
+driver.maximize_window()
+
+bai =("https://www.baidu.com")
+driver.get(bai)
+
+driver.find_element_by_id("kw").send_keys("selenium")
+driver.find_element_by_id("su").click()
+sleep(1)
+
+
+texts = driver.find_element_by_xpath('//*[@id="content_left"]')
+
+for t in texts:
+    print(t.text)
+
+driver.quit()
