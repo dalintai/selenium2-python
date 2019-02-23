@@ -1,0 +1,27 @@
+# coding = utf-8
+from selenium import webdriver
+from time import sleep
+driver = webdriver.Firefox()
+driver.maximize_window()
+
+baidu = "https://www.baidu.com"
+driver.get(baidu)
+
+print("duanyan ====================")
+
+title = driver.title
+print(title)
+
+url = driver.current_url
+print(url)
+
+driver.find_element_by_id("kw").send_keys("slenium")
+driver.find_element_by_id("su").click()
+sleep(1)
+print("wait===============")
+
+tit = driver.title
+print(tit)
+
+url2 = driver.current_url
+print(url2)
