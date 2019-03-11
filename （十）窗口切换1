@@ -1,0 +1,32 @@
+# coding=utf-8
+#编码说明一定是要#空格coding=utf-8，之前#之前没有空格，所以后面代码的text文本定位找不到
+
+from selenium import webdriver
+from time import sleep
+driver = webdriver.Firefox()
+driver.maximize_window
+driver.implicitly_wait(5)
+#隐形等待5秒
+
+baidu = ("https://www.baidu.com")
+driver.get(baidu)
+
+sreach_windows = driver.current_window_handle
+#获得窗口句柄
+
+
+driver.find_element_by_link_text('登录').click()
+driver.find_element_by_link_text("立即注册").click()
+#通过文本形式进行定位
+
+all_handles = driver.window_handles
+# 获得当前所有打开的窗口的句柄
+
+for handle in all_handles:
+    if handle != sreach_windows:
+        driver.switch_to.window(handle)
+        print('now register window!')
+        driver.find_element_by_name("account").send_keys('username')
+        driver.find_element_by_name('password').send_keys('password')
+        time.sleep(10)
+		
