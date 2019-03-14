@@ -1,0 +1,48 @@
+# coding=utf-8
+from selenium import webdriver
+from time import sleep
+driver = webdriver.Firefox()
+driver.maximize_window
+
+#选择登录qq邮箱，教程上是登录了126，
+driver.get("https://mail.qq.com/cgi-bin/loginpage")
+
+#qq邮箱登录表单的iframe是固定的，但是126上面的iframe会随着页面进行刷新，然后iframe-id就会变化，暂时无法定位
+driver.switch_to.frame("login_frame")
+driver.find_element_by_id("u").clear()
+driver.find_element_by_id("u").send_keys("username@qq.com")
+driver.find_element_by_id("p").clear()
+driver.find_element_by_id("p").send_keys("password")
+driver.find_element_by_id("p").click()
+driver.find_element_by_id("login_button").click()
+
+#在进入多级表单的情况下，还可以通过switch_to.default_content()跳回最外层的页面。
+driver.switch_to.default_content()
+sleep(3)
+driver.quit()
+
+-----------------------------------------------------
+#以下代码优化了最后登录操作
+#旧代码登录是定位到“登录”按钮id后进行click操作，优化后定位到“登录”按钮的id后直接进行“回车”键登录
+
+# coding=utf-8
+from selenium import webdriver
+
+#前提一定要应用键盘包
+from selenium.webdriver.common.keys import Keys
+from time import sleep
+driver = webdriver.Firefox()
+driver.maximize_window
+
+driver.get("https://mail.qq.com/cgi-bin/loginpage")
+
+driver.switch_to.frame("login_frame")
+driver.find_element_by_id("u").clear()
+driver.find_element_by_id("u").send_keys("439098421@qq.com")
+driver.find_element_by_id("p").clear()
+driver.find_element_by_id("p").send_keys("Dalintai//1994")
+driver.find_element_by_id("p").click()
+
+#登录操作变为回车键
+driver.find_element_by_id("login_button").send_keys(Keys.ENTER)
+driver.switch_to.default_content()
