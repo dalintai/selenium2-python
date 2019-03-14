@@ -14,7 +14,6 @@ driver.find_element_by_id("u").send_keys("username@qq.com")
 driver.find_element_by_id("p").clear()
 driver.find_element_by_id("p").send_keys("password")
 driver.find_element_by_id("p").click()
-
 driver.find_element_by_id("login_button").click()
 
 #在进入多级表单的情况下，还可以通过switch_to.default_content()跳回最外层的页面。
