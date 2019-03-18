@@ -22,7 +22,9 @@ driver.find_element_by_link_text("立即注册").click()
 all_handles = driver.window_handles
 # 获得当前所有打开的窗口的句柄
 
+#handle是自定义的一个元素，设置一个handle元素在上面all_handle中循环
 for handle in all_handles:
+	#如果handle不等于all_handle的话就执行下面
     if handle != sreach_windows:
         driver.switch_to.window(handle)
         print('now register window!')
@@ -30,3 +32,15 @@ for handle in all_handles:
         driver.find_element_by_name('password').send_keys('password')
         time.sleep(10)
 		
+循环思路：
+	第一步：首先将百度首页窗口进行赋值给sreach_windows
+	第二步：对定义的值handle与sreach_windows在我们第二个窗口中循环判断（我们第二个窗口（all_handles）是获取的所有窗口），
+		如果不等于，说明现在handle就不是百度首页窗口
+	第三步：如果不是的话就获取当前窗口(因为一共有两个窗口获取，第一个就是百度首页窗口，第二个是所有窗口)，然后赋值给handle
+	第四步：然后进行定位操作
+说明：
+	current_window_handle:获取当前窗口句柄
+	window_handles:返回所有窗口句柄到当前会话
+	switch_to.window():用户切换响应窗口，与表单切换中的switch_to。frame()类似，switch_to.window是窗口切换，而switch_to.frame是表单切换
+	
+	
