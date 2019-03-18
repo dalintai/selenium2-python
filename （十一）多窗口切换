@@ -30,4 +30,3 @@ for handle in all_handles:
         driver.find_element_by_name('password').send_keys('password')
         time.sleep(10)
 		
-'
