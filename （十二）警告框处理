@@ -1,1 +1,30 @@
+# coding=utf-8
+from selenium import webdriver
+#因为有鼠标操作，所以一定要导入调用鼠标方法
+from selenium.webdriver.common.action_chains import ActionChains
+from time import sleep
+driver = webdriver.Firefox()
+driver.maximize_window()
+
+baidu = ("https://www.baidu.com")
+driver.get(baidu)
+#最开始代码是直接定位到百度首页右上角的“设置”按钮，然后进行点击，但实际操作是要用光标移至“设置”按钮上，然后“搜索设置”才会显示，而不是直接点击“设置”按钮
+#直接点击设置按钮是没用的，实际操作也是要鼠标悬停在“设置”按钮，然后点击“搜索设置”按钮
+link = driver.find_element_by_link_text('设置')
+ActionChains(driver).move_to_element(link).perform()
+#停滞1s
+sleep(1)
+#点击“搜索设置”按钮
+driver.find_element_by_class_name("setpref").click()
+sleep(1)
+#点击“不显示”的单选框
+driver.find_element_by_id("s1_2").click()
+#点击“保存设置”按钮
+driver.find_element_by_class_name("prefpanelgo").click()
+
+#接收警告框，在通过浏览器定位时，是无法定位到弹出窗口，所以accept只能是接收警告框，这个警告框只有一个“确定”的按钮
+#（至于其他的弹框，或者有多个按钮的警告框操作后续研究）
+driver.switch_to.alert.accept()
+sleep(2)
+driver.quit()
 
