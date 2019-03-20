@@ -11,6 +11,11 @@ driver.get(baidu)
 #最开始代码是直接定位到百度首页右上角的“设置”按钮，然后进行点击，但实际操作是要用光标移至“设置”按钮上，然后“搜索设置”才会显示，而不是直接点击“设置”按钮
 #直接点击设置按钮是没用的，实际操作也是要鼠标悬停在“设置”按钮，然后点击“搜索设置”按钮
 link = driver.find_element_by_link_text('设置')
+#这行与上面用text定位效果相同，但是没办法用id定位，但是浏览器中“设置”按钮有id属性，考虑原因可能是因为有动态属性，所以使用xpath定位
+#“随着你每次登陆而变化，此时就无法通过id准确定位到element。推荐使用xpath的相对路径方法查找到该元素。 -----https://www.cnblogs.com/stephenmc/p/6187314.html”
+link = driver.find_element_by_xpath("/html/body/div[1]/div[1]/div/div[3]/a[8]")
+
+
 ActionChains(driver).move_to_element(link).perform()
 #停滞1s
 sleep(1)
