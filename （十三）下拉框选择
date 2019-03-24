@@ -21,9 +21,8 @@ sleep(1)
 #定位“搜索设置”
 driver.find_element_by_class_name("setpref").click()
 sleep(1)
-定位下拉框并且进行选择框内条件
+#定位下拉框并且进行选择框内条件
 xiala = driver.find_element_by_id("nr")
 Select(xiala).select_by_value('50')
 sleep(1)
-
 driver.quit()
