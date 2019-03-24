@@ -1,3 +1,29 @@
 还没更新
 3-23还没更新
 3-24
+-----------------
+# coding=utf-8
+from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
+
+#之前失败是因为忘记引用select这个方法
+from selenium.webdriver.support.select import Select
+from time import sleep
+driver = webdriver.Firefox()
+driver.maximize_window()
+
+baidu = ("https://www.baidu.com")
+driver.get(baidu)
+#定位“设置”光标悬停操作
+link = driver.find_element_by_xpath("/html/body/div[1]/div[1]/div/div[3]/a[8]")
+ActionChains(driver).move_to_element(link).perform()
+sleep(1)
+#定位“搜索设置”
+driver.find_element_by_class_name("setpref").click()
+sleep(1)
+定位下拉框并且进行选择框内条件
+xiala = driver.find_element_by_id("nr")
+Select(xiala).select_by_value('50')
+sleep(1)
+
+driver.quit()
