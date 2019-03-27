@@ -5,7 +5,7 @@ from time import sleep
 import os
 driver = webdriver.Firefox()
 
-#打开文件路径，找到需要上传的文件“yemain。html”
+#打开文件路径，找到需要上传的文件“yemian。html”
 file_path = 'file:///' + os.path/abspash('yemian.html')
 driver.get(file_path)
 
@@ -20,7 +20,7 @@ driver.quit()
 
 
 -----------------------------------------------------------------------------
-yemain.html
+yemian.html文件
 代码：
 <html>
 <head>
