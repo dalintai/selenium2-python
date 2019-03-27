@@ -1,1 +1,42 @@
+# coding=utf-8
+from selenium import webdriver
+from time import sleep
+#需要导入os方法
+import os
+driver = webdriver.Firefox()
+
+#打开文件路径，找到需要上传的文件“yemain。html”
+file_path = 'file:///' + os.path/abspash('yemian.html')
+driver.get(file_path)
+
+#第一种方法提示错误，查看提示后，发现是因为文件名“text”首字母是t，发生了转义，导致没办法识别到文件
+#但是当文件名重名为ext后正常上传
+driver.find_element_by_id("123").send_keys("C:\\Users\Administrator\Desktop\text.txt")
+#通过python转义方法将路径优化  参考博客：http://www.cnblogs.com/jjj-fly/p/6937059.html
+driver.find_element_by_id("123").send_keys("C:\\Users\\Administrator\\Desktop\\text.txt")
+
+sleep(3)
+driver.quit()
+
+
+-----------------------------------------------------------------------------
+yemain.html
+代码：
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<title>upload_file</title>
+<link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="row-fluid">
+    <div class="span6 well">
+    <h3>upload_file</h3>
+    #之前没有id，只有type与name，但是担心定位错误，所以优化添加了id
+      <input type="file" name="file" id="123"/>
+    </div>
+  </div>
+</body>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.js"></scrip>
+</html>
 
