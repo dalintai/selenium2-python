@@ -23,6 +23,43 @@ driver.find_element_by_class_name("setpref").click()
 sleep(1)
 #定位下拉框并且进行选择框内条件
 xiala = driver.find_element_by_id("nr")
+
+#正常定位是无法通过value进行定位，但是这行是在xiala赋值的前提下定位，所以可以使用
+#1参考博客：https://www.cnblogs.com/101718qiong/p/7929731.html
 Select(xiala).select_by_value('50')
 sleep(1)
 driver.quit()
+
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+#1说明：
+博客摘选：
+2.4 Select  模块(value)定位
+
+1.Select 模块里面除了 index 的方法，还有一个方法，通过选项的 value值来定位。每个选项，都有对应的 value 值，如
+<select id="nr" name="NR">
+<option selected="" value="10">每页显示 10 条</option>
+<option value="20">每页显示 20 条</option>
+<option value="50">每页显示 50 条</option>
+2.第二个选项对应的 value 值就是“20”：select_by_value(2)
+
+  完整代码如下：
+
+	
+# coding:utf-8
+from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.select import Select
+ 
+driver = webdriver.Firefox()
+driver.get("https://www.baidu.com/")
+driver.implicitly_wait(20)
+ 
+mouse = driver.find_element_by_link_text("设置")
+ActionChains(driver).move_to_element(mouse).perform()
+driver.find_element_by_link_text("搜索设置").click()
+
+#重点如下：
+# 通过value定位：select_by_value()
+s = driver.find_element_by_id("nr")
+Select(s).select_by_value(20)
