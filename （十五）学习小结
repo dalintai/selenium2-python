@@ -1,0 +1,18 @@
+脚本需要引用的包
+
+1.基础包：
+from selenium impore webdriver
+from time import sleep
+说明：正常定位，输入，显性时间等待
+
+2.鼠标操作包：
+from selenium.webdriver.common.action_chains import ActionChains
+说明：鼠标悬停
+
+3.键盘输入包：
+from selenium.webdriver.common,keys import Keys
+说明：复制粘贴（ctrl+c/v）,回车等
+
+4.文件包：
+import os
+说明：本地文件上传，多表单切换
