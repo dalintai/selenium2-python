@@ -2,3 +2,61 @@
 3-31 没更新
 4-2没更新
 4-3开始更新
+
+# coding=utf-8
+from selenium import webdriver
+from time import sleep
+driver = webdriver.Firefox()
+baidu = ("https://www.baidu.com")
+driver.get(baidu)
+
+#复制给“binggan”,让它有百度的cookies值，然后进行输出
+binggan = driver.get_cookies()
+print(binggan)
+driver.quit()
+
+------------------------------------------------------------
+4-3cookies代码优化-->自定义添加cookie
+
+# coding=utf-8
+from selenium import webdriver
+from time import sleep
+driver = webdriver.Firefox()
+baidu = ("https://www.baidu.com")
+driver.get(baidu)
+
+#可以对地址中的cookie进行自动以添加
+driver.add_cookies({'name':'key-aaaaaaa','value':'value-bbbbbbb'})
+binggan = driver.get.cookies()
+print(binggan)
+driver.quit()
+
+---------------------------------------------------------------
+4-3cookie代码三次优化-->cookie格式输出
+# coding=utf-8
+from selenium import webdriver
+from time import sleep
+driver = webdriver.Firefox()
+baidu = ("https://www.baidu.com")
+driver.get(baidu)
+
+#对网址的cookie进行格式输出，首先新建bing在driver.grt_cookies()方法中循环
+#然后对输出格式进行优化，通过print，里面设置说明用's%'-->'s%'的格式输出name与value
+for bing in driver.grt_cookies():
+  print('%s'-->'s%'(cookie['name'],cookie['value']))
+driver.quit()
+
+---------------------------------------------------------
+说明：再说明情况下会用cookie呢，当在开发出新功能后，我们可以看到请求中的cookie信息，这样我们就可以来判断cookie是否成功的保存在浏览器中，
+同时我们还可以自定义添加cookie信息，并且可以操作清空掉浏览器中的cookie数据，
+清空cookie方法就是：
+第一种：删除特定的cookie
+driver.delete_cookie()
+第二种：删除所有的cookie
+driver.delete_all_cookie()
+
+
+
+
+
+
