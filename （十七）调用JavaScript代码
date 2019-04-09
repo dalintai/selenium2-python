@@ -1,3 +1,39 @@
 4-7没更新
 4-8代码通了，但是有点没搞懂
 4-9没更新
+
+
+# coding=utf-8
+from selenium import webdriver
+from time import sleep
+driver = webdriver.Firefox()
+driver.set_window_size(500,600)
+
+baidu = ("https://www.baidu.com")
+driver.get(baidu)
+driver.find_element_by_id("kw").send_keys("selenium")
+driver.find_element_by_id("su").click()
+sleep(5)
+#将页面定位到宽度100，高度450，然后赋值给js
+#其实这是一段javascript的代码
+js = "window.scrollTo(100,450);"
+#.execute_script方法主要是用来执行js代码的
+driver.execute_script(js)
+sleep(3)
+
+driver.quit()
+
+说明：
+最开始跑的时候提示我未找到view，在尝试定位的时候找到问题，是因为第10行代码浏览器大小好像是不够后面js代码中滑动条移动的位置原因
+原代码：
+#浏览器大小为500,500
+driver.set_window_size(500, 500)
+
+# 搜索
+driver.find_element_by_id("kw").send_keys("selenium")
+driver.find_element_by_id("su").click()
+sleep(2)
+
+# 通过javascript设置浏览器窗口的滚动条位置
+js="window.scrollTo(100,450);"
+driver.execute_script(js)
