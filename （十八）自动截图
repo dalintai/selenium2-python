@@ -9,6 +9,7 @@ driver.find_element_by_id('su').click()
 sleep(2)
 
 #截图方法跟存放路径
+#路径中，如果不是直接根目录的话，新建文件一定要两个\\，如果是根目录可以是一个\，比如：driver.get_screenshot_as_file("D:\\baidu_img.jpg")
 driver.get_screenshot_as_file("C:\Users\Administrator\Desktop\\baidu_img.png")
 
 driver.quit()
