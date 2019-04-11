@@ -16,3 +16,25 @@
 15.滑动页面
 16.最后将页面进行截图
 ###
+
+---------------------------
+4-12更新
+更新内容：
+1.导入需要的模块
+  1.webdriver
+  2.time
+  3.鼠标
+  4.键盘
+  5.文件
+ 2.完成题目第1,2点
+---------------------------
+# coding=utf-8
+from selenium import webdriver
+from time import sleep
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+import os
+jianshu = ("https://www.jianshu.com/")
+driver.get(jianshu)
+baidu = ("https://www.baidu.com")
+driver.get(baidu)
