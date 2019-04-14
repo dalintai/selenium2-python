@@ -46,19 +46,44 @@ driver.get(baidu)
 4-14更新
 完成：3,4，5,6,7（百度回退到简书，简书前进到百度，然后刷新操作,跳转邮箱，登录）
 ------------------
-driver.back(jianshu)
-driver.forward(baidu)
+driver.back()
+driver.forward()
 driver.refresh()
-driver.find_element_by_id("ke").send_keys("qqyouxiang")
+driver.find_element_by_id("kw").send_keys("qqyouxiang")
 driver.find_element_by_id("su").click()
-driver.find_element_by_class("favurl").click()
-driver.find_element_by_id("switcher_plogin").click()
-driver.switch_to.iframe("login_frame")
-driver.find_element_by_id("u").send_keys("XXXXXX@qq.com")
-driver.find_element_by_id("p").send_keys("XXXXXX")
-driver.find_element_by_id("login_button").click()
+sleep(1)
+driver.find_element_by_class_name("favurl").click()
+sleep(1)
 
+#在登录QQ邮箱这个步骤，其实是需要切换窗口的
+sreach_windows = driver.current_window_handle
+youxiang = driver.window_handles
+for handle in youxiang:
+  if handle != sreach_windows:
+    driver.switch_to.window(handle)
+    sleep(1)
+  #接下来就是要对frame进行切换
+    driver.switch_to.frame("login_frame")
+    sleep(1)
+  #这里遇到一个问题，就是在已经登录qq的情况下，无法成功定位点击“通过账号登录”按钮，所以只能退出登录状态，直接进行账号密码定位输入，在学习章节中
+  #也是直接跳过定位“通过账号登录”按钮跳转
+  #driver.find_element_by_id("switcher_plogin").click()
+  #driver.switch_to.iframe("login_frame")
+    driver.find_element_by_id("u").send_keys("XXXXXX@qq.com")
+    driver.find_element_by_id("p").send_keys("XXXXXX")
+    driver.find_element_by_id("login_button").click()
+    sleep(5)
+driver.quit()
 
+==============
+4-15总结更新
+错误点：
+1.yemain回退/前进代码：driver.back()/driver.forward里面的括号不需要加地址赋值的名称，错误写法：driver.back(baidu)
+2.55行代码在对元素进行class定位，缺少了name，正确应该就是driver.find_element_by_class_name("xxxxx")
+3.窗口切换还是要多练习，多理解
+4.循环语句后面记得加冒号，同时底下的语句也要进行缩进，而循环里面的条件语句也要在已经缩进的同时再进行缩进
+5.还是要对frame多练习，多理解
+-----------------------------------------------------------------------------------------------------
 
 
 
