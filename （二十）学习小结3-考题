@@ -34,6 +34,7 @@ from time import sleep
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 import os
+driver=webdriver，Firefox()
 jianshu = ("https://www.jianshu.com/")
 driver.get(jianshu)
 baidu = ("https://www.baidu.com")
