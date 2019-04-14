@@ -26,7 +26,7 @@
   3.鼠标
   4.键盘
   5.文件
- 2.完成题目第1,2点
+ 2.完成题目第1,2点（进入简书，跳转百度）
 ---------------------------
 # coding=utf-8
 from selenium import webdriver
@@ -42,5 +42,30 @@ driver.get(baidu)
 ------------------
 4-13没更新
 ------------------
+4-14更新
+完成：3,4，5,6,7（百度回退到简书，简书前进到百度，然后刷新操作,跳转邮箱，登录）
+------------------
+driver.back(jianshu)
+driver.forward(baidu)
+driver.refresh()
+driver.find_element_by_id("ke").send_keys("qqyouxiang")
+driver.find_element_by_id("su").click()
+driver.find_element_by_class("favurl").click()
+driver.find_element_by_id("switcher_plogin").click()
+driver.switch_to.iframe("login_frame")
+driver.find_element_by_id("u").send_keys("XXXXXX@qq.com")
+driver.find_element_by_id("p").send_keys("XXXXXX")
+driver.find_element_by_id("login_button").click()
+
+
+
+
+
+
+
+
+
+
+
 
 
