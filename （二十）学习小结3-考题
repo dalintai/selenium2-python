@@ -63,7 +63,7 @@ for handle in youxiang:
     driver.switch_to.window(handle)
     sleep(1)
   #接下来就是要对frame进行切换
-    driver.switch_to.frame("login_frame")
+    driver.switch_to_frame("login_frame")
     sleep(1)
   #这里遇到一个问题，就是在已经登录qq的情况下，无法成功定位点击“通过账号登录”按钮，所以只能退出登录状态，直接进行账号密码定位输入，在学习章节中
   #也是直接跳过定位“通过账号登录”按钮跳转
