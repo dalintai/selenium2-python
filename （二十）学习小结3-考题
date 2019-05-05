@@ -142,7 +142,7 @@ driver.find_element_by_id("composebtn").click()
 sleep(3)
 #然后再次进入一个frame
 driver.switch_to_frame("mainFrame");  
-driver.find_element_by_xpath("//*[@id='toAreaCtrl']/div[2]/input").send_keys("439098421@qq.com")
+driver.find_element_by_xpath("//*[@id='toAreaCtrl']/div[2]/input").send_keys("XXXXXX@qq.com")
 driver.find_element_by_id("subject").send_keys(u"邮件测试")
 #退出frame
 driver.switch_to.default_content()
@@ -160,8 +160,104 @@ sleep(2)
 driver.quit()
 
 -----------------------
-5-4五一放假  ，
+5-4五一放假
 -----------------------
+-----------------------
+5-5更新
+更新内容：实现第8点，完成QQ邮箱自动发送邮件
+-----------------------
+# coding=utf-8
+from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+from time import sleep
+import os
+driver = webdriver.Chrome()
+jianshu = ("https://jianshu.com")
+driver.get(jianshu)
+baidu = ("https://www.baidu.com")
+driver.get(baidu)
+driver.back()
+driver.forward()
+driver.refresh()
+sleep(1)
+#输入中文前添加一个“u”，则可正常输入中文进行搜索
+driver.find_element_by_id("kw").send_keys(u"QQ邮箱")
+driver.find_element_by_id("su").click()
+sleep(1)
+driver.find_element_by_class_name("favurl").click()
+sleep(1)
+#还是对窗口切换进行赋值
+all_window = driver.current_window_handle
+youxiang = driver.window_handles
+for han in youxiang:
+	if han != all_window:
+		driver.switch_to.window(han)
+    #此行一定要有缩进，不然无法定位登录页面的frame
+		driver.switch_to_frame("login_frame")
+#当定位到登录窗口的frame后，则不需要在if里面继续缩进了
+driver.find_element_by_id("u").send_keys("XXXXXX.com")
+driver.find_element_by_id("p").send_keys("XXXXXXXXXX")
+sleep(1)
+driver.find_element_by_id("login_button").click()
+sleep(2)
+#要退出frame！！！然后才能继续操作！！！
+driver.switch_to.default_content()
+driver.find_element_by_id("composebtn").click()
+sleep(2)
+#接下来在输入“收件人”、“主题”、时又要重新进入到一个frame中
+driver.switch_to_frame("mainFrame");  
+driver.find_element_by_xpath("//*[@id='toAreaCtrl']/div[2]/input").send_keys("XXXXXXXXX@qq.com")
+driver.find_element_by_id("subject").send_keys(u"邮件测试")
+#退出“收信人”、“主题”的frame
+driver.switch_to.default_content()
+#然后还是需要进入frame
+#这个frame是“正文”的frame
+driver.switch_to_frame("mainFrame") 
+#但“正文”需要再进入一个frame，但是没有id，所以就通过scrolling与class类型进行定位，然后再赋值给“zhengwen”，最后再进入frame
+zhengwen = driver.find_element_by_xpath('//iframe[@scrolling="auto" and @class="qmEditorIfrmEditArea"]')
+driver.switch_to.frame(zhengwen)
+driver.find_element_by_xpath("/html/body").send_keys(u"这是邮件内容")
+sleep(2)
+#最后退出frame
+driver.switch_to.parent_frame()
+driver.find_element_by_link_text("发送").click()
+sleep(2)
+driver.quit()
+
+==============
+5-5更新总结：
+错误点：
+1.在输入中文时，虽然格式上有写# coding=utf-8，但是命令板上还是会显示输入格式异常，解决方法就是在中文前面添加一个u，例如：
+driver.find_element_by_id("subject").send_keys(u"邮件测试")
+2.此功能实现主要在：
+  2.1窗口切换
+  2.2frame定位
+  2.3for循环嵌套if时格式缩进出现问题
+3.这一点很重要，要单独说！！
+  在成功登录到QQ邮箱后，一直都无法定位“写信”按钮，原因是因为登录后页面正常跳转，需要从frame跳出来，才能继续操作，这点卡了很久！！！
+  
+问题：
+1.多熟练窗口切换
+2.多熟练frame
+-----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
