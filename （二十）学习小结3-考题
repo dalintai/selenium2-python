@@ -194,6 +194,8 @@ for han in youxiang:
 	if han != all_window:
 		driver.switch_to.window(han)
     #此行一定要有缩进，不然无法定位登录页面的frame
+    #最好再等待下，跟网速有很大关系
+    		sleep(2)
 		driver.switch_to_frame("login_frame")
 #当定位到登录窗口的frame后，则不需要在if里面继续缩进了
 driver.find_element_by_id("u").send_keys("XXXXXX.com")
@@ -236,7 +238,7 @@ driver.find_element_by_id("subject").send_keys(u"邮件测试")
   2.3for循环嵌套if时格式缩进出现问题
 3.这一点很重要，要单独说！！
   在成功登录到QQ邮箱后，一直都无法定位“写信”按钮，原因是因为登录后页面正常跳转，需要从frame跳出来，才能继续操作，这点卡了很久！！！
-  ，
+  
 问题：
 1.多熟练窗口切换
 2.多熟练frame
