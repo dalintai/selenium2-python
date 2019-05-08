@@ -271,8 +271,31 @@ sleep(2)
 driver.quit()
 
 -----------------------
+-----------------------
+5-8更新
+更行内容：
+1.完成第10点，邮件中上传附件
 
+...
+#进入到整个fram里面
+driver.switch_to_frame("mainFrame") 
+#然后根据xpath进行定位，并进行上传文件
+#xpayh路径是通过chrome开发者模式复制的
+driver.find_element_by_xpath("/html/body/form[2]/div[2]/div[4]/span[2]/span[1]/span/span/input").send_keys("C:\\Users\\Mr_yang\\Desktop\\12.jpg")
+sleep(4)
 
+#但“正文”需要再进入一个frame，但是没有id，所以就通过scrolling与class类型进行定位，然后再赋值给“zhengwen”，最后再进入frame
+zhengwen = driver.find_element_by_xpath('//iframe[@scrolling="auto" and @class="qmEditorIfrmEditArea"]')
+driver.switch_to.frame(zhengwen)
+driver.find_element_by_xpath("/html/body").send_keys(u"这是邮件内容")
+sleep(2)
+
+==========================
+5-8更新总结：
+1.在选择xpath时可以通过开发者模式里面元素底下的路径看得到是否有frame，或者有几个frame
+2.窗口切换还是不是很熟练，所以尽量再出一个版本，专门通过窗口进行上传（可以使用过去博客中的文件上传的yemian.html文件）
+==========================
+--------------------
 
 
 
