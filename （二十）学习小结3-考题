@@ -303,9 +303,40 @@ sleep(2)
 注意：body.frame_class不是frame属性，而是body中class的值是frame_class
 这个是在用浏览器中开发者模式下xpath路径中看到的，结果以为是frame，导致邮箱“退出”
 按钮无法正常定位。
---------------------
 
 
+# coding=utf-8
+from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+from time import sleep
+import os
+driver = webdriver.Firefox()
+baidu = ("https://www.baidu.com")
+driver.get(baidu)
+driver.find_element_by_id("kw").send_keys("QQ邮箱")
+driver.find_element_by_id("su").click()
+sleep(1)
+driver.find_element_by_class_name("favurl").click()
+sleep(2)
+all = driver.current_window_handle
+youxiang = driver.window_handles
+for h in youxiang:
+	if h != all:
+		driver.switch_to.window(h)
+		sleep(2)
+driver.switch_to_frame("login_frame")
+driver.find_element_by_id("u").send_keys("xxxxxxxx@qq.com")
+driver.find_element_by_id("p").send_keys("xxxxxxxx")
+driver.find_element_by_id("login_button").click()
+sleep(1)
+for h in youxiang:
+	if h == all:
+		driver.switch_to.window(h)
+driver.get("file:///C:/Users/Administrator/Desktop/yemian.html")
+driver.find_element_by_id("123").send_keys('C:\\Users\\Administrator\\Desktop\\text.txt')
+sleep(3)
+driver.quit()
 
 
 
