@@ -6,7 +6,7 @@ import os
 driver = webdriver.Firefox()
 
 #打开文件路径，找到需要上传的文件“yemian。html”
-file_path = 'file:///' + os.path/abspash('yemian.html')
+file_path = 'file:///' + os.path.abspash('yemian.html')
 driver.get(file_path)
 
 #第一种方法提示错误，查看提示后，发现是因为文件名“text”首字母是t，发生了转义，导致没办法识别到文件
