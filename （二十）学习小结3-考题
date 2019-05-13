@@ -335,12 +335,12 @@ for h in youxiang:
 #条件与上面相反
 	if h == all:
 		driver.switch_to.window(h)
-#可以打开本地文件，然后进行上传操作
-#还有就是之前教程上面的方式：
+#这个方式没有成功
 #driver = webdriver.Firefox()
 #file_path = 'file:///' + os.path.abspath('yemian.html')
 #driver.get(file_path)
-
+#可以打开本地文件，然后进行上传操作
+#还有就是之前教程上面的方式：
 driver.get("file:///C:/Users/Administrator/Desktop/yemian.html")
 driver.find_element_by_id("123").send_keys('C:\\Users\\Administrator\\Desktop\\text.txt')
 sleep(3)
@@ -351,6 +351,10 @@ driver.quit()
 1.之前文件不成功，主要是第一种方法abspath写错了，第二种文件路径不完整
 2.通过两个循环条件进行窗口权柄，需要考虑接下来如果窗口较多怎么切换？
 	2.1设想一：当有第三个后，怎么切换与第一个窗口？没想好
+3.后面要仔细了解下文件上传的几个问题：
+	3.1文件上传路径要加反双杠
+	3.2有几种方式通过浏览器在网页上直接跳转本地文件
+	
 ==========================	
 --------------------
 
