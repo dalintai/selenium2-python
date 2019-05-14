@@ -351,14 +351,64 @@ driver.quit()
 1.之前文件不成功，主要是第一种方法abspath写错了，第二种文件路径不完整
 2.通过两个循环条件进行窗口权柄，需要考虑接下来如果窗口较多怎么切换？
 	2.1设想一：当有第三个后，怎么切换与第一个窗口？没想好
+		解决：代码中的：youjian赋值，获取的就是邮件窗口权柄，所以当多个的时候就要进行新的创建
 3.后面要仔细了解下文件上传的几个问题：
 	3.1文件上传路径要加反双杠
 	3.2有几种方式通过浏览器在网页上直接跳转本地文件
 	
 ==========================	
 --------------------
+--------------------
+5-14更新
+更新内容：
+1.完成11点，打印cookic
+2.通过循环条件，完成窗口多次跳转
 
+...
 
+driver.find_element_by_id("kw").send_keys("QQyouxiang")
+driver.find_element_by_id("su").click()
+sleep(1)
+driver.find_element_by_class_name("favurl").click()
+#登录邮箱
+all = driver.current_window_handle
+youxiang = driver.window_handles
+for ha in youxiang:
+	if ha != all:
+		driver.switch_to.window(ha)
+		sleep(2)
+		driver.switch_to_frame("login_frame")
+		sleep(2)
+driver.find_element_by_id("u").send_keys("2200172424@qq.com")
+driver.find_element_by_id("p").send_keys("Dalintai//819")
+sleep(1)
+driver.find_element_by_id("login_button").click()
+sleep(2)
+#退出frame
+driver.switch_to.default_content()
+#退出登录
+driver.find_element_by_class_name("toptitle").click()
+for ha in youxiang:
+	if ha == all:
+		driver.switch_to.window(ha)
+		driver.get("file:///C:/Users/Mr_yang/Desktop/yemian.html")
+driver.find_element_by_id("123").send_keys('C:\\Users\\Mr_yang\\Desktop\\12.jpg')
+sleep(2)
+for ha in youxiang:
+	if ha != all:
+		driver.switch_to.window(ha)
+#给binggan赋值页面cookie
+binggan = driver.get_cookies()
+#输出cookie
+print(binggan)
+#退出所有frame
+driver.switch_to.parent_frame()
+#退出登录
+driver.find_element_by_class_name("toptitle").click()
+sleep(2)
+driver.quit()
+
+--------------------
 
 
 
