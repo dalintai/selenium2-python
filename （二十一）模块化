@@ -17,7 +17,7 @@ class T():
 	def Test3(self):
 		driver.find_element_by_class_name("favurl").click()
 		sleep(3)
-  #运行主函数
+  #运行主函数.
 if __name__=="__main__":
 #给t赋值T类
 	t=T()
@@ -26,4 +26,5 @@ if __name__=="__main__":
 	t.Test2()
 	t.Test3()
 	driver.quit()
+	
 	
