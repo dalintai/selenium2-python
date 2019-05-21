@@ -1,0 +1,41 @@
+
+-------------------------
+5-22更新
+更新内容：
+Chrome浏览器静默模式
+
+# coding=utf-8
+from selenium import webdriver
+from time import sleep
+import unittest
+
+class test(unittest.TestCase):
+    def setUp(self):
+        pass
+
+    def test_baidu(self):
+        #driver = self.driver
+        
+        
+        #主要是下面的两行半代码
+        option = webdriver.ChromeOptions()
+        option.add_argument('headless')  # 静默模式 # 打开chrome浏览器
+        #同时在调用Chrome浏览器需要添加后面的option
+        #这行代码中有没有空格都可以：       
+        #driver = webdriver.Chrome(chrome_options=option)
+        driver = webdriver.Chrome( chrome_options=option)
+        #driver = webdriver.Chrome()
+        
+        
+        baidu = ("https://www.baidu.com")
+        driver.get(baidu)
+        driver.find_element_by_id("kw").send_keys("test")
+        driver.find_element_by_id("su").click()
+        sleep(2)
+        driver.quit()
+    def tearDown(self):
+        pass
+
+
+if __name__=="__main__":
+    unittest.main()
