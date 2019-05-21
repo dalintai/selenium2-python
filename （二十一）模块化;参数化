@@ -1,0 +1,82 @@
+from selenium import webdriver
+from time import sleep
+#打开浏览器一定要在类外卖呢
+driver = webdriver.Chrome()
+#先建个T类
+class T():
+#Test1函数
+	def Test1(self):
+		driver.get("https://www.baidu.com")
+		sleep(1)
+		
+	def Test2(self):
+		driver.find_element_by_id("kw").send_keys("qqyouxiang")
+		driver.find_element_by_id("su").click()
+		sleep(1)
+
+	def Test3(self):
+		driver.find_element_by_class_name("favurl").click()
+		sleep(3)
+  #运行主函数.
+if __name__=="__main__":
+#给t赋值T类
+	t=T()
+  #然后执行Test1,2,3
+	t.Test1()
+	t.Test2()
+	t.Test3()
+	driver.quit()
+	
+	
+--------------------------
+5-21更新
+更新内容：
+参数化
+
+
+# coding=utf-8
+from selenium import webdriver
+from time import sleep
+import os
+#打开本地文件，并设置“r”可读
+wenjian = open("\\Users\\Mr_yang\\Desktop\\mokuai.txt","r")
+#readlines方法就是逐行去读取文件内容
+val = wenjian.readlines()
+wenjian.close()
+for sousuo in wenjian:
+	driver.get("https://www.baid.com")
+	driver.find_element_by_id("kw").send_keys(sousuo)
+	driver.find_element_by_id("su").click()
+	sleep(2)
+	driver.quit()
+	
+	
+#备注：
+mokuai.txt文件中内容就是：
+123
+selenium
+zidonghua
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
