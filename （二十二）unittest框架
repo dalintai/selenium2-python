@@ -2,3 +2,70 @@
 -------------------
 5月21日，不更新
 -------------------
+-------------------
+5月21日，更新
+更新内容：
+在参数化（参数化代码使用的是：（二十一）参数化）的基础上使用unittest框架
+
+# coding=utf-8
+from selenium import webdriver
+from time import sleep
+import os
+import unittest
+
+class kuangjia(unittest.TestCase):
+#先进行初始化
+	def setUp(self):
+		pass
+    
+ #执行用例
+ #必要test_开头
+	def test_baidu(self):
+  #打开本地文档，并进行可读
+		wendang = open("C:\\Users\\Mr_yang\\Desktop\\mokuai.txt","r")
+    #对文档wendang内容进行逐行读取
+		val = wendang.readlines()
+		wendang.close()
+    #循环要在val中，第一次写就写成wendang
+		for wenjian in val:
+			driver = webdriver.Chrome()
+			baidu = ("https://www.baidu.com")
+			driver.get(baidu)
+			driver.find_element_by_id("kw").send_keys(wenjian)
+			driver.find_element_by_id("su").click()
+			sleep(2)
+			driver.quit()
+   
+	def tearDown(self):
+		sleep(1)
+    
+if __name__=="__main__":
+	unittest.main()
+
+==============================
+5-21更新总结：
+1.unittest框架中要按照以下格式:
+  1.1setUp(self):初始化
+  1.2test_名字(self)：必须test_开头
+  1.3tearDown(self):最后清除
+
+2.最开始的类要引用：
+  2.1import unittest
+  2.2类名后面要引用：unittest.TestCase
+  
+==============================
+-------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
