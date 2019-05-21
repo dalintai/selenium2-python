@@ -1,6 +1,6 @@
 from selenium import webdriver
 from time import sleep
-#打开浏览器一定要在类外卖呢
+#打开浏览器一定要在类外面呢
 driver = webdriver.Chrome()
 #先建个T类
 class T():
