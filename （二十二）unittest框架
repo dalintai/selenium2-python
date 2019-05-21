@@ -55,15 +55,61 @@ if __name__=="__main__":
   
 ==============================
 -------------------
+-------------------
+5-22更新
+更新内容：
+1.通过setUp启动浏览器
+2.之前的代码因为没有通过setUp进行启动浏览器，所以就没有用到self，这次需要用到self参数
 
 
+# coding=utf-8
+from selenium import webdriver
+from time import sleep
+import unittest
+
+class test(unittest.TestCase):
+    def setUp(self):
+    #因为在setUp中启动浏览器，所以需要在self里面调用
+        self.driver = webdriver.Chrome()
+        self.baidu = ("https://www.baidu.com")
+        self.driver.get(self.baidu)
+
+    def test_baidu(self):
+    #只有driver被self.driver赋值后才不需要写self
+    #还有一种方法就是不需要写driver = self.driver，然后后面的操作都要带self
+        driver = self.driver
+        driver.find_element_by_id("kw").send_keys("test")
+        driver.find_element_by_id("su").click()
+
+    def tearDown(self):
+    #sleep不需要在self，所以self.sleep是错误的
+        sleep(2)
+	#driver.quit()也同样要调用在self后面
+        self.driver.quit()
 
 
+if __name__=="__main__":
+    unittest.main()
 
+==============================
+5-22更新总结：
+1.使用setUp时（除非为pass），一定要用到self
+	1.1如下：
+	def setUp(self):
+    	#因为在setUp中启动浏览器，所以需要在self里面调用
+        self.driver = webdriver.Chrome()
+        self.baidu = ("https://www.baidu.com")
+        self.driver.get(self.baidu)
+	1.2同时test_XX后面调用需要加如下代码：然后就可以不需要再带self
+	driver = self.driver
+	driver.find_element_by_id("kw").send_keys("test")
+        driver.find_element_by_id("su").click()
 
-
-
-
+2.test_XX调用第二种方法，就是可以不需要加driver = self.driver这句代码，但接下来的操作都要有self，如下：
+	def test_baidu(self):
+        #driver = self.driver
+        self.driver.find_element_by_id("kw").send_keys("test")
+        self.driver.find_element_by_id("su").click()
 
 
 
