@@ -110,7 +110,7 @@ if __name__=="__main__":
         #driver = self.driver
         self.driver.find_element_by_id("kw").send_keys("test")
         self.driver.find_element_by_id("su").click()
-
+3.在test_XX用例中，执行顺序是正常执行，setUp跟tearDown是公共模块，test_XX是独立的用例，没有任何关联。
 ==============================
 -------------------
 
