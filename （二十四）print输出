@@ -1,0 +1,33 @@
+# coding:utf-8
+from selenium import webdriver
+from time import sleep
+import unittest
+
+class Test(unittest.TestCase):
+    def setUp(self):
+        option = webdriver.ChromeOptions()
+        option.add_argument('headless')
+        self.driver = webdriver.Chrome(chrome_options=option)
+        self.baidu = ("https://www.baidu.com")
+        self.driver.get(self.baidu)
+        print ("测试开始")
+    def tearDown(self):
+        sleep(1)
+        self.driver.quit()
+        print ("测试结束")
+    def test_C1(self):
+        driver = self.driver
+        driver.find_element_by_id("kw").send_keys("test")
+        driver.find_element_by_id("su").click()
+        print ("测试运行")
+if __name__=="__main__":
+    unittest.main()
+
+
+=================
+5-28更新总结：
+1.print输出格式：
+  print （1）
+  print （“这是输出”） 
+  
+=================
