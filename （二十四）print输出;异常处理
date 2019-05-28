@@ -1,0 +1,80 @@
+# coding:utf-8
+from selenium import webdriver
+from time import sleep
+import unittest
+
+class Test(unittest.TestCase):
+    def setUp(self):
+        option = webdriver.ChromeOptions()
+        option.add_argument('headless')
+        self.driver = webdriver.Chrome(chrome_options=option)
+        self.baidu = ("https://www.baidu.com")
+        self.driver.get(self.baidu)
+        print ("测试开始")
+    def tearDown(self):
+        sleep(1)
+        self.driver.quit()
+        print ("测试结束")
+    def test_C1(self):
+        driver = self.driver
+        driver.find_element_by_id("kw").send_keys("test")
+        driver.find_element_by_id("su").click()
+        print ("测试运行")
+if __name__=="__main__":
+    unittest.main()
+
+
+=================
+5-28更新总结：
+1.print输出格式：
+  print （1）
+  print （“这是输出”） 
+  
+=================
+
+# coding=utf-8
+from selenium import webdriver
+from time import sleep
+import unittest
+
+class Test(unittest.TestCase):
+    def setUp(self):
+        option = webdriver.ChromeOptions()
+        option.add_argument('headless')
+        self.driver = webdriver.Chrome(chrome_options=option)
+        self.baidu = ("https://www.baidu.com")
+        self.driver.get(self.baidu)
+        print ("测试开始")
+    def tearDown(self):
+        sleep(1)
+        self.driver.quit()
+        print ("测试结束")
+    def test_C1(self):
+        driver = self.driver
+        print ("测试运行")
+        try:
+            driver.find_element_by_id("kw").send_keys("test")
+            #这行缺少id，故意执行失败
+            driver.find_element_by_("su").click()
+            print ("操作成功")
+        except:
+            print ("操作失败")
+    
+if __name__=="__main__":
+    unittest.main()
+    
+    
+  说明：
+  1.try执行成功后结果会输出：
+  测试开始
+  操作运行
+  操作成功
+  操作结束
+  2.如果try没有成功执行，结果会输出：
+  测试开始
+  测试运行
+  测试失败
+  测试结束
+  3.这样就会显示出事先输出的提示， 并且控制台会提示运行ok
+  
+  备注：在不用pycharm，直接用cmd的时候也是同样的输出
