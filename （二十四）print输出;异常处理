@@ -1,3 +1,4 @@
+'''
 # coding:utf-8
 from selenium import webdriver
 from time import sleep
@@ -22,7 +23,7 @@ class Test(unittest.TestCase):
         print ("测试运行")
 if __name__=="__main__":
     unittest.main()
-
+'''
 
 =================
 5-28更新总结：
