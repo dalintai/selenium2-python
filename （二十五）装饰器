@@ -1,0 +1,59 @@
+# coding:utf-8
+from selenium import webdriver
+from time import sleep
+import unittest
+
+class TestClass(unittest.TestCase):
+#装饰器
+#只在setupclass跟treandownclass上面添加
+  @classmethod
+  def setUpClass(self):
+    option = webdriver.ChromeOptions()
+    option.add_argument('headless')
+    self.driver = webdriver.Chrome(chrome_options=option)
+    self.bd("https://www.baidu.com")
+    print("Test start")
+ @classmethod
+ def treanDownClass(self):
+    self.driver.quit()
+ def test_select(self):
+    driver = self.driver
+    print("Test run")
+    try:
+      driver.find_element_by_id("kw").send_keys("test")
+      driver.find_element_by_id("su").click()
+      print("Test_Select success")
+    except:
+      print("Test_Select failure")
+ def test_wu(self):
+    driver = self.driver
+    try:
+      driver.find_element_by_id("kw").send_keys("wu")
+      driver.find_element_by_id("su").click()
+      print("Test_Wu success")
+    except:
+      print("Test_Wu failure")
+      
+if __name__=="__main__":
+    unittest.main()
+    
+  ============================
+  5-30更新总结：
+  当添加装饰器后，两个搜索用例进行同时进行，第一个用例是输入test，第二个是输入wu，运行结果就是搜索框会直接搜索testwu
+  1.装饰器是：@classmethod
+  2.初始化函数setUp改为setUpClass
+    结束函数treanDown改为treanDownClass
+  3.装饰器只在setUpClass跟treanDownClass上面添加
+  
+  ============================
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
