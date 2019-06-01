@@ -1,1 +1,81 @@
+mac系统的生成报告代码：
 
+# coding:utf-8
+from selenium import webdriver
+from time import sleep
+#导入HTMLTestRunner的包
+from HTMLTestRunner import HTMLTestRunner
+import unittest
+class T(unittest.TestCase):
+	def setUp(self):
+		option = webdriver.ChromeOptions()
+		option.add_argument("headless")
+		self.driver = webdriver.Chrome(chrome_options=option)
+		#self.driver = webdriver.Chrome()
+		self.baidu = ("https://www.baidu.com")
+		self.driver.get(self.baidu)
+	def tearDown(self):
+		sleep(1)
+		self.driver.quit()
+	def test_test(self):
+		driver = self.driver
+		#driver.get(self.baidu)
+		sleep(2)
+		driver.find_element_by_id("kw").send_keys("slenium")
+		driver.find_element_by_id("su").click()
+	
+
+if __name__=="__main__":
+	#unittest.main()
+	testunit = unittest.TestSuite()
+  #addTest里面写入类（T）跟测试用例名称(test_test)
+	testunit.addTest(T("test_test"))
+  #两种路径都可以，os用的是linux，所以路径一定要多注意，不然会被强制转译
+	#fp = open('/Users/dalintai/软件/12345.html','wb')
+	fp = open('/Volumes/脚本/test2.html','wb')
+	runner = HTMLTestRunner(stream=fp,
+  #在命名title跟description输入中文前面可以加u，也可以不加，加u就是u'这是中文'
+							title='自动化测试报告',
+							description='测试用例执行详细：')
+	runner.run(testunit)
+	fp.close()
+  
+  ========================
+  6-1 mac更新总结：
+  1.第一主要坑就是在将HTMLTestRunner包导入，mac系统发现python路径很难找，并不能只通过单纯的文件查找，而且根据教程上说，只要导入到lib就可以，
+  实际上是不行的， 一定要导入/site-packages下，然后通过一下方式：
+    1.1输入python
+    1.2输入import sys
+    1.3输入print(sys.path)
+事例代码如下：
+1 C:\Users\dell>python
+2 Python 3.5.1 (v3.5.1:37a07cee5969, Dec  6 2015, 01:54:25) [MSC v.1900 64 bit (AMD64)] on win32
+3 Type "help", "copyright", "credits" or "license" for more information.
+4 >>> import sys
+5 >>> print(sys.path)
+6 ['', 'C:\\Users\\dell\\AppData\\Local\\Programs\\Python\\Python35\\python35.zip', 'C:\\Users\\dell\\AppData\\Local\\Programs\\Python\\Python35\\DLLs',
+  'C:\\Users\\dell\\AppData\\Local\\Programs\\Python\\Python35\\lib', 'C:\\Users\\dell\\AppData\\Local\\Programs\\Python\\Python35', 'C:\\Users\\dell\\
+  AppData\\Local\\Programs\\Python\\Python35\\lib\\site-packages']
+
+然后找到site-packages的路径，将修改后的代码复制进入。
+参考博客：
+https://www.jianshu.com/p/be09cde5b655
+https://www.cnblogs.com/imyalost/p/7282802.html
+  
+2.最后进入python后输入：import HTMLTestRunner来测试是否起效。没反应就是可以的。
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
