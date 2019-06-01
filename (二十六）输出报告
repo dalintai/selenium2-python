@@ -65,10 +65,42 @@ https://www.cnblogs.com/imyalost/p/7282802.html
 2.最后进入python后输入：import HTMLTestRunner来测试是否起效。没反应就是可以的。
 
 
+========================
+ win系统的生成报告代码：
+ 
+ 
+ # coding:utf-8
+from selenium import webdriver
+from time import sleep
+import unittest
+from HTMLTestRunner import HTMLTestRunner
+class Baidu(unittest.TestCase):
+	def setUp(self):
+		self.driver = webdriver.Firefox()
+		self.baid = ("https://www.baidu.com")
+		self.driver.get(self.baid)
+	def test_baidu_search(self):
+		driver = self.driver
+		driver.find_element_by_id("kw").send_keys("test")
+		driver.find_element_by_id("su").click()
+	def tearDown(self):
+		sleep(2)
+		self.driver.quit()
+
+if __name__=="__main__":
+	testunit = unittest.TestSuite()
+	testunit.addTest(Baidu("test_baidu_search"))
+#win的路径要比mac好些很多
+	fp = open('C:/Users/Administrator/Desktop/123/result.html','wb')
+	runner = HTMLTestRunner(stream=fp,
+							title='test Title',
+							description='case')
+	runner.run(testunit)
+	fp.close()
   
-  
-  
-  
+========================
+6-1win更新总结：
+1.win环境下报告是比较容易生成的，但会遇到一个问题，就是内容为空
   
   
   
