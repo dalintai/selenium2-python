@@ -105,7 +105,17 @@ if __name__=="__main__":
 但是他妈的还没找到解决方法...
 根据网上博客说明，可能是因为Pycharm没有执行main函数，在实际调试中，也确实发现没有输出print,所以可能是Pycharm
 编译器的问题，后续详细切入Pycharm无法用HTMLTestRunner输出报告。
-  
+2.公司的pycharm可以正常输出报告，首先查看下python环境是否装了HTMLTestRunner，方法：
+	2.1进入python
+	2.2输入import HTMLTestRunner
+3.解决方法：
+	3.1先用python底下输出面板里面的Terminal测试HTMLTestRunner是否可用
+	3.2然后再点击if旁边的运行，直接选择运行文件名.py
+	3.3选择已经导入HTMLTestRunner包的python版本
+4.问题分析：
+	4.1主要第一是编辑器问题，可以尝试修改版本，可能主要是pycharm中的python环境中没有HTMLTestRunner的包
+	4.2第二就是编辑器在运行的时候并不是直接运行py文件，而是运行了unittest框架里面的单个用例，同时也要考虑
+	是不是在新建文件的目录没有在根目录或者文件层级有影响。
   
   
   
