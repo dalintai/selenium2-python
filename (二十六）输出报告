@@ -4,7 +4,7 @@ mac系统的生成报告代码：
 from selenium import webdriver
 from time import sleep
 #导入HTMLTestRunner的包
-from HTMLTestRunner import HTMLTestRunner
+from HTMLTestRunner import HTMLTestRunner 
 import unittest
 class T(unittest.TestCase):
 	def setUp(self):
