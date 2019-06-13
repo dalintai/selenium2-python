@@ -1,3 +1,96 @@
+===============
+test1文件
+
+# coding:utf-8
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from time import sleep
+import unittest
+
+class TestUsecases1（unittest.TestCase):
+  def setUp(self):
+    option = webdriver.ChromeOptions()
+    option.add_argument("headless")
+    self.driver = webdriver.Chrome(chrome_options=option)
+    self.baidu = ("https://www.baidu.com")
+    self.driver.get(baidu)
+ def treanDown(self):
+    sleep(2)
+    self.driver.quit()
+ def test_baidu(self):
+    driver = self.driver
+    driver.find_element_by_id("kw").send_keys("unittest")
+    driver.find_element_by_id("su").send_keys(Keys.ENTER)
+    
+if __name__=="__main__":
+    unittest.mian()
+
+===============
+===============
+test2文件
+
+# coding:utf-8
+from selenium import wendriver
+from selenium.webdriver.common.keys import Keys
+from time import sleep
+import unittest
+
+class TestUserCase2(unittest.TestCase):
+   def setUp(self):
+    option = webdriver.ChromeOptions()
+    option.addargument("headless")
+    self.driver = webdriver.Chrome(chrome_options=option)
+    self.ceshi = ("https://www.jianshu.com")
+    self.driver.get(self.ceshi)
+  def treanDown(self):
+    sleep(2)
+    self.driver.quit()
+  def test_jianshu(self):
+      driver =self.driver
+      driver.find_element_by_id("kw").send_keys("selneium")
+      driver.find_element_by_id("su").send_keys(Keys.ENTER)
+      
+if __name__=="__main__":
+    unittest.main()
+  
+  
+===============
+===============
+__init__文件
+
+
+# coding:utf-8
+from selenium import webdriver
+import unittest
+import test6
+import test7
+
+piliang = unittest.TestSuite()
+#test1跟test2要跟__init__在同一目录
+#最后是文件名.类名
+piliang.addTest(unittestt.makeSuite(test1.TestUsercase1))
+piliang.addTest(unittestt.makeSuite(test2.TestUsercase2))
+
+更新总结：
+1.导入键盘方法
+2.最后在通过__init__文件调用test1跟test2的时候，addTest后面的调用是文件名.类名
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
