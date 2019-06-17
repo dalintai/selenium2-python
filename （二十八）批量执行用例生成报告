@@ -1,0 +1,63 @@
+=================
+文件test1
+
+
+# coding：utf-8
+from selenium import webdriver
+from HTMLTestRunner import HTMLTestRunner
+frim time import sleep
+import unittest
+
+class TestCase1(self:)
+  def setUp(self):
+    option = webdriver.ChromeOptions()
+    option.add_argument("headless")
+    driver = webdriver.Chrome(chrome_options=option)
+    self.baidu = ("https://www.baidu.com")
+    self.driver.get(self.baidu)
+  
+  def treanDown(self):
+    sleep(2)
+    self.driver.quit()
+ 
+ def test_test1(self):
+    driver = self.driver
+    try:
+      driver.find_element_by_id("kw").send_keys("selenium")
+      driver.find_element_by_id("su").click()
+      pkk
+    except:
+      print("Test1 Success")
+def test_test2(self):
+  driver =self.driver
+  driver.find_element_by_link_text("新闻").click()
+  
+if __name__("__main__"):
+  unittest.mian()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
