@@ -29,19 +29,72 @@ class TestCase1(self:)
     except:
       print("Test1 Success")
 def test_test2(self):
-  driver =self.driver
-  driver.find_element_by_link_text("新闻").click()
+      def test_test3(self):
+        driver = self.driver
+        try:
+            driver.find_element_by_link_text("新闻").click()
+            driver.back()
+            print("Test3 Success")
+        except:
+            print("Test3 Fail")
   
 if __name__("__main__"):
   unittest.mian()
 
+=================
+=================
+文件test2
+
+# coding:utf-8
+from selenium import selenium
+from HTMLTestRunner import HTMLTestRunner
+from teme import sleep
+imoirt unittestt
+
+class TestCaes2(unittest.TestCase):
+  def setUp(self):
+    option = webdriver.ChromeOptions()
+    option.arr_argument("headless")
+    driver = Chrome.sriver(chrome_options=option)
+    self.ceshi = ("https://www.jianshu.com")
+    self.driver.get(self.ceshi)
+  def treanDown(self):
+    sleep(2)
+    self.driver.quit()
+  def test_test2(self):
+    driver = self.driver
+    driver.find_element_by_id("q").send_keys("test")
+    driver.find_element_by_id("q").send_keys(Keys.ENTER)
+    
+if __name__=="__main__":
+  unittest.main()
+  
+  
+=================
+=================
+__init__文件
 
 
 
+# coding:utf-8
+from selenium import webdriver
+from HTMLTestRunner import HTMLTestRunner
+import unittest
+import test1,test2
 
+piliang = unittest.TestSuite()
+piliang.addTest(unittest.makeSuite(test1.TestCase1))
+piliang.addTest(unittest.makeSuite(test2.TestCase2))
 
+wenjian = open('C:\\Users\\Mr_yang\\Desktop\\Selenium脚本\\baogao.html','wb')
 
-
+ru = HTMLTestRunner(stream = wenjian,
+                    title='自动化测试报告',
+                    description='用例执行情况：')
+#ru = unittest.TextTestRunner()
+ru.run(piliang)
+  
+  
 
 
 
