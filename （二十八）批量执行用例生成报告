@@ -82,7 +82,9 @@ from HTMLTestRunner import HTMLTestRunner
 import unittest
 import test1,test2
 
+#测试文件进行封装成一个测试套件
 piliang = unittest.TestSuite()
+#在进行批量执行的时候，主要是对文件以及里面的类型进行标识
 piliang.addTest(unittest.makeSuite(test1.TestCase1))
 piliang.addTest(unittest.makeSuite(test2.TestCase2))
 
@@ -95,7 +97,8 @@ ru = HTMLTestRunner(stream = wenjian,
 ru.run(piliang)
   
   
-
+6-18总结：
+1.可以实现多用例执行，并生成报告，但是在最后__init__文件中，生成报告与执行报告的顺序清楚，顺序错误的话很可能无法继续执行。
 
 
 
