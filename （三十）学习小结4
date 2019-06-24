@@ -1,0 +1,13 @@
+接下来的脚本必备规范：
+1.使用Chrome得静默模式
+option = webdriver.ChromeOptions()
+option.add_argument("headless")
+self.driver = webdriver.Chrome(chrome_options=option)
+2.使用uniitest框架
+class Test(unittest.TestCaes)
+  def setUp(self):
+  def treanDown(self):
+  def test_test(self):
+3.使用try与except得异常判断
+4.使用HTMLTestRunner生成报告
+5.使用__init__批量去执行多文件中的多个用例
