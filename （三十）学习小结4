@@ -11,3 +11,102 @@ class Test(unittest.TestCaes)
 3.使用try与except得异常判断
 4.使用HTMLTestRunner生成报告
 5.使用__init__批量去执行多文件中的多个用例
+
+
+
+
+
+===================================
+test1文件
+# coding:utf-8
+from selenium import webdriver
+from HTMLTestRunner import HTMLTestRunner
+from time import sleep
+import unittest
+
+class Test(unittest.TestCase):
+    def setUp(self):
+        option = webdriver.ChromeOptions()
+        option.add_argument("headless")
+        self.driver = webdriver.Chrome(chrome_options= option)
+        self.ceshi = "https://www.baidu.com"
+        self.driver.get(self.ceshi)
+    def treanDown(self):
+        sleep(2)
+        self.driver.quit()
+    def test_test1(self):
+        u'''搜索selenium'''
+        driver = self.driver
+
+        driver.find_element_by_id("kw").send_keys("selenium")
+        driver.find_element_by_id("su").click()
+    def test_test2(self):
+        u'''搜索test'''
+        driver = self.driver
+
+        driver.find_element_by_id("kw").send_keys("test")
+        driver.find_element_by_id("su").click()
+if __name__=="__main__":
+    unittest.main()
+    
+    
+===================================
+===================================
+test2文件
+
+
+# coding:utf-8
+from selenium import webdriver
+from HTMLTestRunner import HTMLTestRunner
+from selenium.webdriver.common.keys import Keys
+from time import sleep
+import unittest
+class Test2(unittest.TestCase):
+    def setUp(self):
+        option = webdriver.ChromeOptions()
+        option.add_argument("headless")
+        self.driver = webdriver.Chrome(chrome_options=option)
+        self.ceshi = "https://www.jianshu.com"
+        self.driver.get(self.ceshi)
+    def treanDown(self):
+        sleep()
+        self.driver.quit()
+    def test_test2(self):
+        u'''简书模块'''
+        driver = self.driver
+
+        driver.find_element_by_id("q").send_keys("test")
+        driver.find_element_by_id("q").send_keys(Keys.ENTER)
+if __name__=="__main__":
+    unittest.main()
+    
+===================================
+===================================
+__init__文件
+
+
+# coding:utf-8
+from selenium import webdriver
+from HTMLTestRunner import HTMLTestRunner
+import unittest
+import os
+import test1,test2
+
+piliang = unittest.TestSuite()
+#前面是文件夹，后面是类名
+piliang.addTest(unittest.makeSuite(test1.Test))
+piliang.addTest(unittest.makeSuite(test2.Test2))
+wenjian = open('C:\\Users\\Mr_yang\\Desktop\\Selenium脚本\\baogao2.html','wb')
+
+ru = HTMLTestRunner(stream = wenjian,
+                    title='自动化测试报告',
+                    description='用例执行情况：')
+#ru = unittest.TextTestRunner()
+ru.run(piliang)
+    
+    
+    
+    
+    
+    
+    
