@@ -8,7 +8,7 @@ baidu = "https://www.baidu.com"
 driver.get(baidu)
 
 print("duanyan ====================")
-
+  
 title = driver.title
 print(title)
 
