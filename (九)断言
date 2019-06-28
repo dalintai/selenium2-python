@@ -22,7 +22,7 @@ print("wait===============")
 
 tit = driver.title
 print(tit)
- 
+  
 url2 = driver.current_url
 print(url2)
 
