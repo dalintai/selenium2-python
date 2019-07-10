@@ -1,0 +1,40 @@
+###
+题目：
+要求对淘宝自动化
+购买一件物品
+###
+
+----------------
+7-11更新
+更新内容：
+1.使用unittest框架通过百度搜索淘宝
+
+
+# coding：utf-8
+from selenium import webdriver
+from time import sleep
+import unittest
+
+class TEST(unittest.TestCase):
+    @classmethod
+    def setUpClass(self):
+        #option = webdriver.ChromeOptions()
+        #option.add_argument("headless")
+        #self.driver = webdriver.Chrome(chrome_options=option)
+        self.driver = webdriver.Chrome()
+        self.baidu = "https://www.baidu.com"
+
+    def treanDownClass(self):
+        pass
+    def test_sousuo(self):
+        driver = self.driver
+        driver.get(self.baidu)
+        sleep(2)
+        driver.find_element_by_id("kw").send_keys("淘宝")
+        sleep(2)
+        driver.find_element_by_id("su").click()
+        sleep(2)
+        driver.find_element_by_xpath("//*[@id='1']/h3/a[1]").click()
+
+if __name__=="__main__":
+    unittest.main()
