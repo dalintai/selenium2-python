@@ -1,0 +1,44 @@
+首先在建立脚本工程的时候，要按照以下规范进行新建：
+1.项目文件夹
+  1.1用例1文件夹--------case1
+  1.2用例2文件夹--------case2
+  1.3用例3文件夹--------case3
+  1.4报告存放文件夹------report
+  1.5批量执行文件夹------run_all.py
+  
+  
+  
+2.用例设计规范
+最理想状态就是一个用例文件中，一个模块文件分为多个用例，一个功能分为多个模块文件，最后通过批量执行。
+1.添加装饰器：classmedhod，浏览器只要打开一次就可以
+2.可以在setupclass中完成很多东西，然后用例排序就按顺序执行，例如以下代码(一个文件夹中的用例文件，里面分为2个用例)：
+
+class Ttaobao(unittest.TestCase):
+  @classmedhod
+  def setUpClass(self):
+    option = wendriver.ChromeOptions()
+    option.add_argument("headless")
+    self.driver = driver.webdriver.Chrome(chrome_options=option)
+    self.baidu = "https://www.baidu.com"
+    self.driver.get(self.baidu)
+    sleep(2)
+    self.driver.find_element_by_id("kw").send_keys("taobao")
+    self.driver.find_element_by_id("su").click()
+    sleep(1)
+    self.driver.find_element_by_xpath("//*[@id='1']/h3/a[1]").click()
+    sleep(1)
+  @classmedhod
+  def treanDownClass(self):
+    pass
+  def test_dianji1(self):'
+    driver = self.driver
+    driver.find_element_by_id("q").send_keys("test")
+    driver.find_element_by_id("q").send_keys(Keys.ENTER)
+  def test_dianji2(self):
+    driver = self.driver
+    driver.back()
+    driver.forward()
+    
+if __name__=="__main__":
+  unittest.main()
+    
