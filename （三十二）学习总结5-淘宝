@@ -46,6 +46,7 @@ if __name__=="__main__":
 更新内容：
 主要对上一个代码进行重构，将打开浏览器，进入百度，搜索淘宝，然后尝试淘宝中搜索都放在了setUp里面，同时为了方便只打开一次浏览器，添加了装饰器
 1.使用装饰器classmethod
+2.编写了2个用例进行执行
 
 #coding:utf-8
 from selenium import webdriver
@@ -81,6 +82,10 @@ class Ttaobao(unittest.TestCase):
                 driver.switch_to.window(han)
                 driver.find_element_by_id("q").send_keys("test")
                 driver.find_element_by_id("q").send_keys(Keys.ENTER)
+    def test_dianji2(self):
+        driver = self.driver
+        driver.back()
+        driver.forward()
                 
 if __name__=="__main__":
     unittest.main()
