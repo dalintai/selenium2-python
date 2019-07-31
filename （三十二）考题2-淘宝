@@ -161,6 +161,83 @@ if __name__=="__main__":
     unittest.main()
     
       
+      
+--------------
+7-30更新  
+更新内容：
+1.实现切换第三个窗口
+    1.1使用的是：        driver.switch_to.window(all_chuangkou[-1])
+但也要获取所有窗口的权柄，这句代码就是获取最近的窗口权柄，以下是星球球主的代码：
+driver.find_element_by_id("su").click()
+time.sleep(2)
+driver.find_element_by_link_text(u"淘宝网 - 淘！我喜欢").click()
+# 获取打开的多个窗口句柄
+windows = driver.window_handles
+# 切换到当前最新打开的窗口
+driver.switch_to.window(windows[-1])
+driver.find_element_by_link_text(u"登录").click()
+
+    
+    
+  # coding:utf-8
+from selenium import webdriver
+from time import sleep
+from selenium.webdriver.common.keys import Keys
+import unittest
+
+class Tbaodl(unittest.TestCase):
+    @classmethod
+    def setUpClass(self):
+        #option = webdriver.ChromeOptions()
+        #option.add_argument("headlsess")
+        #self.driver = webdriver.Chrome(chrome_options=option)
+        self.driver = webdriver.Chrome()
+        self.baidu = "https://www.baidu.com"
+        self.driver.get(self.baidu)
+        self.driver.find_element_by_id("kw").send_keys("taobao")
+        self.driver.find_element_by_id("su").click()
+        sleep(2)
+        self.driver.find_element_by_xpath("//*[@id='1']/h3/a[1]").send_keys(Keys.ENTER)
+        sleep(1)
+        all_chuangkou = driver.window_handles
+    @classmethod
+    def treanDownClass(self):
+        sleep(1)
+        self.driver.quit()
+    def test_denglu(self):
+        driver = self.driver
+        #all_chuangkou = driver.window_handles
+        driver.switch_to.window(all_chuangkou[-1])
+        #driver.find_element_by_id("q").send_keys("渔夫帽")
+        #driver.find_element_by_id("q").send_keys(Keys.ENTER)
+        driver.find_element_by_link_text("亲，请登录").click()
+        sleep(5)
+    def test_sousuo(self):
+        driver = self.driver
+        driver.find_element_by_id("q").send_keys("渔夫帽")
+        driver.find_element_by_id("q").send_keys(Keys.ENTER)
+        sleep(2)
+        driver.switch_to.window(all_chuangkou[-1])
+        
+
+if __name__=="__main__":
+    unittest.main()
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
