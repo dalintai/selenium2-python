@@ -227,7 +227,82 @@ if __name__=="__main__":
     
     
     
-    
+------------------------
+8-3更新
+更新内容：
+完成淘宝80%自动化，在最后支付阶段未实现。
+
+# coding:utf-8
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from time import sleep
+import unittest
+class Taobao(unittest.TestCase):
+    @classmethod
+    def setUpClass(self):
+        #option = webdriverOptions()
+        #option.add_aurgment("headlsee")
+        #self.driver = webdriver.Chrome(chrome_options=option)
+        self.driver = webdriver.Chrome()
+        self.baidu = "https://www.baidu.com"
+        self.driver.get(self.baidu)
+        self.driver.find_element_by_id("kw").send_keys("taobao")
+        self.driver.find_element_by_id("su").click()
+        sleep(2)
+        #定位淘宝的官网
+        self.driver.find_element_by_xpath("//*[@id='1']/h3/a[1]").click()
+        sleep(2)
+    @classmethod
+    def treanDown(slef):
+        sleep(2)
+        self.driver.quit()
+    def test_denglu(self):
+        driver = self.driver
+        #所有窗口权柄
+        all_chuangkou = driver.window_handles
+        #获得最新窗口权柄
+        driver.switch_to.window(all_chuangkou[-1])
+        driver.find_element_by_id("q").send_keys("渔夫帽")
+        driver.find_element_by_id("q").send_keys(Keys.ENTER)
+        sleep(5)
+        #通过手机扫描进行登录，成功后执行下面的方法
+    def test_xuangou(self):
+        driver = self.driver
+        #点击选择帽子的品牌
+        #注意：有时候这个牌子的位置会变，所以导致后面的元素定位会失效
+        driver.find_element_by_xpath("//*[@id='J_NavCommonRowItems_0']/a[3]/span[2]").click()
+        sleep(2)
+        #点击物品图片
+        driver.find_element_by_id("J_Itemlist_Pic_594112082014").click()
+        sleep(2)
+        #点击物品具体颜色
+        #driver.find_element_by_xpath("//*[@id='J_DetailMeta']/div[1]/div[1]/div/div[4]/div/div/dl[2]/dd/ul/li[1]/a/span").click()
+        #sleep(2)
+        #点击支付按钮
+        #driver.find_element_by_id("J_LinkBuy").click()
+    def test_zhifu(self):
+        driver = self.driver
+        all_chuangkou = driver.window_handles
+        driver.switch_to.window(all_chuangkou[-1])
+        
+        driver.find_element_by_xpath("//*[@id='J_DetailMeta']/div[1]/div[1]/div/div[4]/div/div/dl[2]/dd/ul/li[1]/a/span").click()
+        sleep(2)
+        #点击立即购买按钮
+        driver.find_element_by_id("J_LinkBuy").click()
+        sleep(2)
+        #点击支付提交订单按钮
+        driver.find_element_by_class_name("go-btn").click()
+        sleep(5)
+        #选择其他支付方式按钮
+        driver.find_element_by_xpath("//*[@id='J-rcChannels']/div/div/a[1]").click()
+        sleep(2)
+        #输入支付密码。。。但是失败了，可能支付宝做了限制
+        driver.find_element_by_xpath("//*[@id='payPassword_container']/div/i[1]").send_keys("12345")
+
+
+
+if __name__=="__main__":
+    unittest.main()
     
       
     
