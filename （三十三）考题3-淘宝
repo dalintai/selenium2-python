@@ -12,3 +12,91 @@
 　　1.任务4：搜索公仔并且设置筛选条件设置为价格为41%（会改变）的用户喜欢的价位，发货地为上海，且包邮。
 　　2.任务5：在店铺收藏中将素果店置顶，并添加备注描述为价格实惠和标签分类为原创包包
   
+----------------
+9-5
+更新内容：
+1.进入淘宝
+2.进行扫码登录
+3.点击添加收货地址
+说明：link_text并不是直接可以识别中文，而是用在回会跳转链接的文字才行。
+代码如下：
+driver.find_element_by_link_text("亲，请登录").click()
+# coding:utf-8
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+from time import sleep
+import unittest
+class taobao(unittest.TestCase):
+    @classmethod
+    def setUpClass(self):
+        #option = webdriver.ChromeOptions()
+        #option.add_argument("headless")
+        #self.driver = webdriver.Chrome(chrome_options=option)
+        self.driver = webdriver.Chrome()
+        self.taobao = ("https://www.taobao.com")
+        self.driver.get(self.taobao)
+        sleep(1)
+
+    @classmethod
+    def treanDownClass(self):
+        sleep(2)
+        self.driver.quit()
+    def test_denglu(self):
+        driver = self.driver
+        #扫码登录
+        self.driver.find_element_by_link_text("亲，请登录").click()
+        sleep(5)
+    def test_shouhuo(self):
+        driver = self.driver
+        #点击我的头像
+        driver.find_element_by_xpath("/html/body/div[4]/div[2]/div[1]/div/div[1]/div/a/img").click()
+        sleep(2)
+        driver.find_element_by_link_text("我的收货地址").click()
+        sleep(2)
+        #跳转了新的窗口
+        all_chuangkou = driver.window_handles
+        driver.switch_to.window(all_chuangkou[-1])
+        sleep(3)
+        #点击地址
+        driver.find_element_by_class_name("placeholder").click()
+        sleep(2)
+        #选择自治区
+        driver.find_element_by_xpath("//*[@id='cndzkEntrance']/div[2]/div/div/div[2]/ul[2]/div/li[5]").click()
+        sleep(1)
+        #选择城市
+        driver.find_element_by_xpath("//*[@id='cndzkEntrance']/div[2]/div/div/div[2]/ul[2]/div/li[1]").click()
+        sleep(1)
+        #选择市区
+        driver.find_element_by_xpath("//*[@id='cndzkEntrance']/div[2]/div/div/div[2]/ul[2]/div/li[4]").click()
+        sleep(1)
+        #选择接到
+        driver.find_element_by_xpath("//*[@id='cndzkEntrance']/div[2]/div/div/div[2]/ul[2]/div/li[12]").click()
+        sleep(2)
+        #填写详细地址
+        driver.find_element_by_class_name("cndzk-entrance-associate-area-textarea").send_keys("kdslhfdjksfhdsfhdklshfklds")
+        sleep(2)
+        #填写联系人
+        driver.find_element_by_id("fullName").send_keys("达林太")
+        sleep(2)
+        #填写电话
+        driver.find_element_by_id("mobile").send_keys("18859142311")
+        sleep(2)
+        #保存
+        driver.find_element_by_xpath("//*[@id='myForm']/div[5]/div[2]/button").click()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
