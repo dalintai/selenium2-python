@@ -206,7 +206,7 @@ class Tbaodl(unittest.TestCase):
         self.driver.quit()
     def test_denglu(self):
         driver = self.driver
-        #all_chuangkou = driver.window_handles
+        all_chuangkou = driver.window_handles
         driver.switch_to.window(all_chuangkou[-1])
         #driver.find_element_by_id("q").send_keys("渔夫帽")
         #driver.find_element_by_id("q").send_keys(Keys.ENTER)
