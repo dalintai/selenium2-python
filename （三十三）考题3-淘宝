@@ -11,7 +11,8 @@
 
 　　1.任务4：搜索公仔并且设置筛选条件设置为价格为41%（会改变）的用户喜欢的价位，发货地为上海，且包邮。
 　　2.任务5：在店铺收藏中将素果店置顶，并添加备注描述为价格实惠和标签分类为原创包包
-  
+ 
+----------------
 ----------------
 9-5
 更新内容：
@@ -21,6 +22,9 @@
 说明：link_text并不是直接可以识别中文，而是用在回会跳转链接的文字才行。
 代码如下：
 driver.find_element_by_link_text("亲，请登录").click()
+
+
+
 # coding:utf-8
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -86,7 +90,8 @@ class taobao(unittest.TestCase):
         driver.find_element_by_xpath("//*[@id='myForm']/div[5]/div[2]/button").click()
 
 
-
+----------------
+----------------
 
 
 
