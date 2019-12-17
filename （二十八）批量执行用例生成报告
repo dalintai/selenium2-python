@@ -55,7 +55,7 @@ class TestCaes2(unittest.TestCase):
   def setUp(self):
     option = webdriver.ChromeOptions()
     option.arr_argument("headless")
-    driver = Chrome.sriver(chrome_options=option)
+    driver = driver.Chrome(chrome_options=option)
     self.ceshi = ("https://www.jianshu.com")
     self.driver.get(self.ceshi)
   def treanDown(self):
