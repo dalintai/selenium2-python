@@ -1,0 +1,44 @@
+补充说明：
+  用例执行顺序：
+      第一种：按照命名顺序执行
+        参考博客：https://www.cnblogs.com/bzdmz/p/10348201.html （方法一）
+      第二种：不能使用main函数执行，使用TestSuite方式执行   
+                 https://blog.csdn.net/qq_34768313/article/details/86645350（方法二）
+                 
+                 
+  多窗口切换：
+      说明：在切换窗口后，发现无法新建def函数进行执行其他操作，因为窗口权柄没有确认，所以无法定位到元素
+          参考博客：https://blog.csdn.net/daiyu__zz/article/details/86175177
+          
+          
+          
+          一下是窗口切换代码：
+   def test_qiehuanchuangkou(cls):
+        driver = cls.driver
+        #获取当前窗口权柄
+        sreach_windows = driver.current_window_handle
+        #获取所有窗口权柄
+        all_handles = driver.window_handles
+        #判断窗口循环
+        for handle in all_handles:
+            if handle != all_handles:
+                driver.switch_to.window(handle)
+                sleep(2)
+
+    def test_input(cls):
+        driver = cls.driver
+        
+        #这个是切换的方法一
+        #新的def需要确认窗口权柄后才可以继续对页面进行操作，除非所有这个页面的操作都放在上一个def中
+        windows = driver.window_handles
+        driver.switch_to.window(windows[-1])
+        sleep(3)
+        
+        
+        location = driver.find_element_by_id
+        #点击"回答"
+        location("answer-bar").click()
+        sleep(3)
+        #locations = driver.find_element_by_class_name
+        driver.find_element_by_class_name('unname').click()
+        sleep(2)
