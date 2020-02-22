@@ -27,6 +27,20 @@
 说明：driver是浏览器的驱动包，网址：https://github.com/mozilla/geckodriver/releases，选择系统对应的版本环境
   注意：将下载好的driver解压并放在python安装地址中的scripts文件夹中，并将python安装路径中的script文件路径同样添加在环境变量中，与python环境变量路径一致
 
+mac：
+     
+
+    安装好selenium库，由于它是一个自动化测试工具，需要浏览器配合使用，这里我们选择Chrome浏览器。
+
+    查看浏览器版本
+    下载相应的Chromedriver版本
+    下载地址（选择自己需要的版本）：http://chromedriver.storage.googleapis.com/index.html
+    安装Chromedrive
+    将下载好的可执行文件移动到/usr/local/bin目录中；
+    在Mac终端输入：sudo mv chromedriver /usr/local/bin
+
+
+
 二、运行第一个demo
 
 1.编写脚本
