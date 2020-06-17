@@ -1,3 +1,95 @@
+参考博客：https://www.jb51.net/article/140483.htm
+
+===========================================================================
+
+第一种方法：
+
+使用场景：
+
+打开多个窗口，需要定位到新打开的窗口
+
+使用方法：
+
+# 获取打开的多个窗口句柄
+windows = driver.window_handles
+# 切换到当前最新打开的窗口
+driver.switch_to.window(windows[-1])
+
+举例说明：
+
+	
+# _._ coding:utf-8 _._
+
+from selenium import webdriver
+import time
+# 打开课工场网站主页【第一个窗口】
+driver = webdriver.Chrome()
+driver.get('http://www.kgc.cn/')
+driver.maximize_window()
+# 点击全部课程，进入课程库【第二个窗口】
+driver.find_element_by_link_text('全部课程').click()
+time.sleep(3)
+# 使用第一种方法切换浏览器【切换到第二个窗口】
+windows = driver.window_handles
+driver.switch_to.window(windows[-1])
+time.sleep(3)
+# 点击课程库中的某个课程，进入课程详情界面【在第二个窗口页面进行元素点击操作，来判断窗口是否切换成功】
+driver.find_element_by_xpath('//*[@id="yw1"]/ul/li[2]').click()
+time.sleep(3)
+# 关闭浏览器
+driver.quit()
+print('测试通过')
+
+=========================================================
+
+第二种方法：
+
+使用场景：
+
+打开两个窗口，需要定位到新打开的窗口
+
+使用方法：
+
+# 获得打开的第一个窗口句柄
+window_1 = driver.current_window_handle
+# 获得打开的所有的窗口句柄
+windows = driver.window_handles
+# 切换到最新的窗口
+for current_window in windows:
+ if current_window != window_1:
+  driver.switch_to.window(current_window)
+
+举例说明：
+	
+# _._ coding:utf-8 _._
+
+from selenium import webdriver
+import time
+from selenium import webdriver
+import time
+# 打开课工场网站主页【第一个窗口】
+driver = webdriver.Chrome()
+driver.get('http://www.kgc.cn/')
+driver.maximize_window()
+# 点击全部课程，进入课程库【第二个窗口】
+driver.find_element_by_link_text('全部课程').click()
+time.sleep(3)
+# 使用第二种方法切换浏览器【切换到第二个窗口】
+window_1 = driver.current_window_handle
+windows = driver.window_handles
+for current_window in windows:
+ if current_window != window_1:
+  driver.switch_to.window(current_window)
+time.sleep(3)
+# 点击课程库中的某个课程，进入课程详情界面【在第二个窗口页面进行元素点击操作，来判断窗口是否切换成功】
+driver.find_element_by_xpath('//*[@id="yw1"]/ul/li[2]').click()
+time.sleep(3)
+# 关闭浏览器
+driver.quit()
+print('测试通过')
+
+========================================================================================================
+
 # coding=utf-8
 #编码说明一定是要#空格coding=utf-8，之前#之前没有空格，所以后面代码的text文本定位找不到
 
